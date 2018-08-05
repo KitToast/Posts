@@ -1,0 +1,45 @@
+\documentclass[12pt]{article}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textwidth}{6.5in}
+\setlength{\parindent}{0in}
+\setlength{\parskip}{\baselineskip}
+
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{question}{Question}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{proposition}{Proposition}[section]
+
+\title{Diagonalization}
+\author{Edward Kim}
+
+\begin{document}
+\maketitle
+\hrulefill
+
+Diagonalization is a time-tested tool dating back to Cantor's famous proof on the cardinality of $\mathbb{R}$. The of the undecidability of halting problem uses diagonalization to show that no TM can decide whether an arbitrary TM will halt on a given input $x$. This technique will be used to show some basic results on the natural hierarchy of deterministic and non-deterministic TMs based on the amount of resources one allocates to it.
+
+\section{The Time Hierarchy Theorems} 
+
+\begin{definition}
+Given a function $f: \mathbb{N} \rightarrow \mathbb{N}$, we say that $f$ is time-constructible if the map $x \mapsto f(|x|)$ can be computed in $O(f(|x|))$ time
+\end{definition}
+
+\begin{theorem}
+Let $f,g$ be time-constructible functions such that $f(n)\log f(n) = o(g(n))$, then
+$$ \boldmath{DTIME}(f(n)) \subset \boldmath{DTIME}(g(n))$$
+\end{theorem}	
+
+\begin{proof}
+	We assume that simulating a machine by universal TM, $\mathcal{U}$ is at most logarithmic. Consider the language $L$ determined by the machine $D$ which exhibits the following behavior: on input $x$, run the TM $M_x(x)$ for $g(|x|)$ steps. If the machine halts at any point with output $y$, output its negation $\neg y$. Otherwise, output 0. \par By construction, $L \in \boldmath{DTIME}(g(n))$. We shall prove that $L$ cannot be decided by any machine in $\boldmath{DTIME}(f(n))$. For the sake of contradiction, suppose that there exists machine $G$ such that $G$ decides $L$ and for any input $x$, there exists a constant $c$ such that $G$ runs for at most $c|x|$. By our assumption above, we can simulate $G$ on $\mathcal{U}$ with $c|x|\log|x|$ steps. Since $f(n)\log f(n) = o(g(n))$, there exists an string $y$ such that $g(|y|) > f(|y|) \log |y|$ such that $M_y = G$ (this follows from the padding lemma). Hence, $D(y) = \neg b = G(y)$. This gives us our contradiction.
+\end{proof}
+
+\begin{theorem}
+If $f,g$ are time-constructible functions such that $f(n+1) = o(g(n))$, then
+$$ \boldmath{NTIME}(f(n)) \subset \boldmath{NTIME}(g(n)) $$
+\end{theorem}
+
+\end{document}
