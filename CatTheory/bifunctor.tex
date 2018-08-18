@@ -12,6 +12,7 @@
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{definition}{Definition}[section]
 \newtheorem{proposition}{Proposition}[section]
+\newtheorem{example}{Example}[section]
 
 \title{On the Elementary Properties of Bifunctors}
 \author{Edward Kim}
@@ -41,6 +42,13 @@ Since $L_c'(b') = M_{b'}(c')$, then equality above holds and gives us a well-def
  with the natural association $S(c,f) = L_c(f)$ and so on.
 \end{proof}
 
+Let us consider an example on the hom functor:
+
+\begin{example}
+ Consider the bifunctor $\text{hom}: \mathcal{C^{\text{op}}} \times \mathcal{C} \rightarrow {\bf Set}$ where if $c,c'$ are objects in $C$ where $\text{hom}(c,-): \mathcal{C} \rightarrow {\bf Set}$ and $\text{hom}(-,c'): \mathcal{C^{\text{op}}} \rightarrow {\bf Set}$ are functors sending objects to their respective hom-sets. and for $f:
+b \rightarrow b'$ a morphisms of $\mathcal{C}$ $hom(f,c'): \text{hom}(b',c') \rightarrow \text{hom}(b,c')$ via $g \mapsto f \circ g$ and $hom(c,f): \text{hom}(c,b) \rightarrow \text{hom}(c,b')$ via $g \mapsto g \circ f$
+\end{example}
+
 Let $S,T:B \times C \rightarrow D$ be two bifunctors. Suppose that $\tau: S \rightarrow B$ is a natural transformation. Let $\alpha(b,c): D \rightarrow D$ be function that maps the natural transformation $\tau$.  We shall prove that $\alpha(b,-)$ is a natural transformation from $S(b,-) \rightarrow T(b,-)$ and $\alpha(-,c)$ is a a natural transformation from $S(-,c) \rightarrow T(-,c)$ for all objects $b \in B$,$c \in C$
 \begin{proof}
  If $\tau: S \rightarrow T$ is a natural transformation, the following diagram holds for morphisms $f:a \rightarrow a'$ and $g:b \rightarrow b'$:
@@ -52,5 +60,7 @@ Let $S,T:B \times C \rightarrow D$ be two bifunctors. Suppose that $\tau: S \rig
 
 Let ${\bf 2}$ be the category with two objects $0,1$ and a morphism $0 \rightarrow 1$. Consider the product category $C \times {\bf 2}$. We can visualize this as a ``two-layed'' category in the sense that we can define two functors $L_0,L_1: C \rightarrow C \times {\bf 2}$ where $L_0(c) = (c,0), L_1(c) = (c,1)$. We can also ``traverse levels'' via the morphism $\sigma: 0 \rightarrow 1$. Define $\mu: L_0 \rightarrow L_1:
 \mu(c) = (c,\sigma)$. We see that this is a natural transformation. In fact, we deem it as the universal transformation. Let $\tau$ be a natural transformation between two functors $S,T: C \rightarrow B$. Then there exists an unique functor such that $F: C \times {\bf 2} \rightarrow B$ such that $F\mu c = \tau c$. This can intuitively understood by first separating source and sink of the natural transformation into two layers. We do this by defining the morphism functor to be $F(f,0) = Sf$ and $F(f,1) = Tf$ and $F(f,\sigma) = Tf \circ \tau c$ are the diagonal morphisms when $f: c \rightarrow c'$.
+
+This visual could be extended to functor catgories where if $N_0: S \rightarrow T$ and $N_1: T \rightarrow R$ are two natural transformations for functors $S,T,R: \mathcal{C} \rightarrow \mathcal{B}$. Then we visualize this composition of natural transformations $N_1 \circ N_0$ via the commutative diagram provided by $\mathcal{C} \times {\bf 3}$ 
 
 \end{document}
