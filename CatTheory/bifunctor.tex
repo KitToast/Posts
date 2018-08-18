@@ -1,0 +1,56 @@
+\documentclass[12pt]{article}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textwidth}{6.5in}
+\setlength{\parindent}{0in}
+\setlength{\parskip}{\baselineskip}
+
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{question}{Question}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{proposition}{Proposition}[section]
+
+\title{On the Elementary Properties of Bifunctors}
+\author{Edward Kim}
+
+\begin{document}
+\maketitle
+\hrulefill
+
+Let $B,C,D$ be categories and $B \times C$ be its product category. We define the bifunctor $S: B \times C \rightarrow D$ to be a functor in the usual sense between categories $B \times C$ and $D$. We note that the objects of $B \times C$ are ordered pairs $(b,c)$ for objects $b \in B, c \in C$ and morphisms are $(f,g): (b,c) \rightarrow (b',c')$ where $f:b \rightarrow b'$ and $g:c \rightarrow c'$ in their respective categories. We note that fixing one argument of the bifunctor gives a projective functor such that $S(b,-): C \rightarrow D$ and $S(-,c): B 
+\rightarrow D$ for the object functor. The idea is that we want to ensure that the morphisms ``align'' such that it preserves the morphisms in $D$. The following theorem determines the conditions for which this property holds:
+
+\begin{theorem}
+ Let $B,C$ and $D$ be categories. For all objects in $c \in C$,$b \in B$, define the following functors: 
+ $$M_b : C \rightarrow D $$
+ $$L_c : B \rightarrow D $$
+ such that $L_c(b) = M_b(c)$. Then there exists a bifunctor $S: B \times C \rightarrow D$ such that $S(-,C) = L_c$ and $S(B,-) = M_b$ such that:
+ $$ M_b'g \circ L_cf = L_c'f \circ M_bg $$ for all morphisms $g: c \rightarrow c'$and $f:b \rightarrow b'$. The morphism shown above will be the morphism of $S(f,g)$.
+\end{theorem}
+
+\begin{proof}
+To see this, observe that $M_b'(g) \circ L_c(f): L_c(b) \xrightarrow{L_c(f)} L_c(b') = M_{b'}(c) \xrightarrow{M_b'(g)} M_{b'}(c')$  
+and $L_c'(f) \circ M_b(g): M_b(c) \xrightarrow{M_b(g)} M_b(c') = L_{c'}(b) \xrightarrow{L_{c'}(f)} L_c'(b') $ 
+ 
+Since $L_c'(b') = M_{b'}(c')$, then equality above holds and gives us a well-defined morphism. One easily sees a semblance to ``bilinearity'' with bimodules. Conversely, if the aforementioned equality holds, then the properties of the bifunctor arise from the commutative diagram 
+ $$S(b,c) \xrightarrow{S(b,g)} S(b,c') \xrightarrow{S(f,c')} S(b'c') $$
+ $$S(b,c) \xrightarrow{S(f,c)} S(b',c) \xrightarrow{S(b',g)} S(b'c') $$
+ with the natural association $S(c,f) = L_c(f)$ and so on.
+\end{proof}
+
+Let $S,T:B \times C \rightarrow D$ be two bifunctors. Suppose that $\tau: S \rightarrow B$ is a natural transformation. Let $\alpha(b,c): D \rightarrow D$ be function that maps the natural transformation $\tau$.  We shall prove that $\alpha(b,-)$ is a natural transformation from $S(b,-) \rightarrow T(b,-)$ and $\alpha(-,c)$ is a a natural transformation from $S(-,c) \rightarrow T(-,c)$ for all objects $b \in B$,$c \in C$
+\begin{proof}
+ If $\tau: S \rightarrow T$ is a natural transformation, the following diagram holds for morphisms $f:a \rightarrow a'$ and $g:b \rightarrow b'$:
+ $$  S(a,b) \xrightarrow{\alpha(a,-)} T(a,b) \xrightarrow{T(a,g)} T(a,b') $$
+ $$  S(a,b) \xrightarrow{S(a,g)} S(a,b') \xrightarrow{\alpha(a,-)} T(a,b') $$
+ 
+ A similar approach can be done on $\alpha(-,b)$ 
+\end{proof}
+
+Let ${\bf 2}$ be the category with two objects $0,1$ and a morphism $0 \rightarrow 1$. Consider the product category $C \times {\bf 2}$. We can visualize this as a ``two-layed'' category in the sense that we can define two functors $L_0,L_1: C \rightarrow C \times {\bf 2}$ where $L_0(c) = (c,0), L_1(c) = (c,1)$. We can also ``traverse levels'' via the morphism $\sigma: 0 \rightarrow 1$. Define $\mu: L_0 \rightarrow L_1:
+\mu(c) = (c,\sigma)$. We see that this is a natural transformation. In fact, we deem it as the universal transformation. Let $\tau$ be a natural transformation between two functors $S,T: C \rightarrow B$. Then there exists an unique functor such that $F: C \times {\bf 2} \rightarrow B$ such that $F\mu c = \tau c$. This can intuitively understood by first separating source and sink of the natural transformation into two layers. We do this by defining the morphism functor to be $F(f,0) = Sf$ and $F(f,1) = Tf$ and $F(f,\sigma) = Tf \circ \tau c$ are the diagonal morphisms when $f: c \rightarrow c'$.
+
+\end{document}
