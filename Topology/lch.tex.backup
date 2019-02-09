@@ -1,0 +1,72 @@
+\documentclass[12pt]{article}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textwidth}{6.5in}
+\setlength{\parindent}{0in}
+\setlength{\parskip}{\baselineskip}
+
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{question}{Question}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{example}{Example}[section]
+
+\title{Notes on Topology}
+\author{Edward Kim}
+
+\begin{document}
+\maketitle
+\hrulefill
+
+\section{Separation by Continuous Functions}
+
+
+
+
+\section{Locally Compact Hausdorff Spaces}
+
+The following post is based on the LCH section of Folland (Section 4.5)
+
+\begin{definition}
+ Let $X$ be a topological space. We deem $X$ to be locally compact if every point has a compact neighborhood.
+\end{definition}
+
+\begin{proposition} \label{prop1}
+ If $X$ is a LCH space, let $U \subset X$ be an open set such that $x \in U$. then there exists a compact neighborhood of $K$ of $x$ such that $K \subset U$
+\end{proposition}
+
+\begin{proof}
+Assume that $\bar{U}$ is compact. Otherwise, replace $U$ with $U \cap F^o$. The closure will be a closed subset of a compact set and thus compact. We will invoke the following lemma concerning disjoint points and compact sets in Hausdorff spaces.
+  \begin{lemma} \label{lem1}
+    Let $X$ be a Hausdorff topological space. Let $K \subset X$ be compact and $x \not\in F$. Then there exists disjoint open sets $V,W$such that $x \in V$ and $K 
+    \subset W$.
+  \end{lemma}
+  
+  By \ref{lem1}, there exists relatively disjoint open sets $V',W'$ in $\bar{U}$ such that $x \in V'$ and $\partial {U} \subset W'$. Recall that the boundary $\partial U$ is closed in $\bar{U}$. Since $V' \subset U$, $V'$ is open in $X$
+  as well. Thus, taking the closure $\bar{V}$ is closed in $U \backslash W$ and thus, compact. Take $K = \bar{V}$.
+\end{proof}
+
+\begin{definition}
+ An open set $V$ is said to be precompact if its closure is compact.
+\end{definition}
+
+\begin{proposition}
+ Let $X$ be a LCH space and $K \subset U \subset X$ where $K$ is compact and $U$ is open. There exists a precompact open $V$ such that $K \subset V \subset \bar{V} \subset U$.
+\end{proposition}
+
+\begin{proof}
+ For each $x \in K$, we can choose a compact neighborhood $N_x \subset U$ by \ref{prop1}. Let $C = \cup_{x \in K} N_x^o$. Since $C$ is an open cover, there exists a finite subset such that 
+ $K \subset \cup_{x \in I, \text{finite}} N_x^o$. Let $V$ be the finite union containing $K$. Then $\bar{V} = \cup_{x \in I} N_x$, showing that $V$ is indeed precompact.
+\end{proof}
+
+Since every compact Hausdorff space is normal, we can prove an separation theorem analagous to Urysohn's Lemma for LCH spaces.
+
+\begin{example}
+ It is clear that $\mathbb{R}^n$ is locally compact since the closed ball of radius $r > 0$ is compact in $\mathbb{R}^n$. Riesz proved that every normed vector space is locally compact if and only if it is finite dimensional. Compare this to the result that the closed unit ball in an arbitrary Banach space is generally not compact. (By Alaglou's Theorem, the closed unit ball is compact in the weak* topology).
+\end{example}
+
+
+\end{document}
